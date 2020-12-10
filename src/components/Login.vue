@@ -43,6 +43,15 @@
         },
         methods: {
             login () {
+                this.$axios.post('/login',{
+                    username: this.loginForm.username,
+                    password: this.loginForm.password
+                })
+                .then(
+                    resp=>{
+                        console.log(resp.data)
+                    }
+                )
                 if(this.loginForm.username == "abc" && this.loginForm.password == "123") {
                     if (this.checked === true) {
                         this.$store.commit("long_login")

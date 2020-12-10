@@ -7,7 +7,8 @@ import './plugins/element.js'
 Vue.config.productionTip = false
 
 var axios = require('axios')
-axios.defaults.baseURL = 'http://x.x.x.x:8181/api'
+axios.defaults.baseURL = 'http://10.128.188.208:8181/api'
+
 // 附带凭证
 axios.defaults.withCredentials = true
 // 全局注册，在别的地方可以使用$axios来代表axios
