@@ -17,7 +17,7 @@
             <el-button type="primary" style="width: 30%;background: #FF9966;border: none;margin-right:5px" v-on:click="login">登录</el-button>
             <router-link to="register"><el-button type="primary" style="width: 30%;background: #505458;border: none">注册</el-button></router-link>
         </el-form-item>
-        <el-dialog class="login_dialog" title="用户名或密码错误" :visible.sync="dialogVisible" :center=true :append-to-body=true :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
+        <el-dialog class="login_dialog" :title="dialogTitle" :visible.sync="dialogVisible" :center=true :append-to-body=true :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
             <el-button class="confirm_button" type="primary" style="width: 30%;background: #FF9966;border: none;" v-on:click="closedialog">确认</el-button>
         </el-dialog>
 
@@ -29,33 +29,41 @@
         data () {
             return {
                 rules: {
-                    username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
-                    password: [{required: true, message: '密码不能为空', trigger: 'blur'}]
                 },
-                checked: false,
                 loginForm: {
                     username: '',
                     password: ''
                 },
+                checked: true,
                 loading: false,
-                dialogVisible: false
+                dialogVisible: false,
+                dialogTitle: ""
             }
         },
         methods: {
             login () {
-                if(this.loginForm.username == "abc" && this.loginForm.password == "123") {
-                    if (this.checked === true) {
-                        this.$store.commit("long_login")
+                this.$axios.post('/login',{
+                    username: this.loginForm.username,
+                    password: this.loginForm.password
+                })
+                .then(resp => {
+                    if(resp.data.code == 0) { //登陆成功
+                        var token = resp.data.data
+                        console.log(token)
+                        if(this.checked == true){
+                            this.$store.commit("long_login",token)
+                        }
+                        else{
+                            this.$store.commit("short_login",token)
+                        }
+                        console.log(this.$store.state.token)
+                        this.$router.replace('home')
                     }
-                    else{
-                        this.$store.commit("short_login")
+                    else  { //用户名或密码错误
+                        this.dialogTitle = "用户名或密码错误"
+                        this.dialogVisible = true
                     }
-                    this.$router.replace('home')
-                }
-                else
-                {
-                    this.dialogVisible = true
-                }
+                })
             },
             closedialog () {
                 this.dialogVisible = false

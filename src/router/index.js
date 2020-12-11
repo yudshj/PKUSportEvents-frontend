@@ -35,6 +35,11 @@ const routes = [
     path: '/result',
     name: 'Result',
     component: () => import('../components/Result/Result')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../components/Register')
   }
 ]
 
