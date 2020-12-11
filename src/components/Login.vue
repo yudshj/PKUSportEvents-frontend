@@ -49,14 +49,12 @@
                 .then(resp => {
                     if(resp.data.code == 0) { //登陆成功
                         var token = resp.data.data
-                        console.log(token)
                         if(this.checked == true){
                             this.$store.commit("long_login",token)
                         }
                         else{
                             this.$store.commit("short_login",token)
                         }
-                        console.log(this.$store.state.token)
                         this.$router.replace('home')
                     }
                     else  { //用户名或密码错误
