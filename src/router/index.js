@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/Home.vue'
+import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -8,39 +8,30 @@ const routes = [
   {
     path: '/',
     name: 'Default',
-    redirect:'/home',
+    redirect:'/index',
   },
   {
     path: '/home',
     name: 'Home',
     component: Home,
-    redirect: '/homepage',
+    redirect: '/index',
+    children: [
+    ]
+  },
+  {
+    path: '/index',
+    name: 'PagePresent',
+    component: () => import('../components/PagePresent'),
     meta:{
       requireLogin : true
-    },
-    //Home中有顶部导航栏和router-view；新的页面的路由放在下面的children中，页面显示时上方就会附带导航栏
-    children: [
-      {
-        path: '/homepage',
-        name: 'Homepage',
-        meta:{
-          requireLogin : true
-        },
-      },
-      {
-        path: '/t2',
-        name: 'T2',
-        meta:{
-          requireLogin : true
-        },
-      }
-    ]
+    }
   },
   {
     path: '/Login',
     name: 'Login',
-    component: () => import('../components/Login')
+    component: () => import('../components/Login'),
   }
+  
 ]
 
 const router = new VueRouter({
