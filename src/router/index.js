@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/index',
     name: 'PagePresent',
-    component: () => import('../components/PagePresent'),
+    component: () => import('../components/index/IndexPage'),
     meta:{
       requireLogin : true
     }
@@ -30,8 +30,12 @@ const routes = [
     path: '/Login',
     name: 'Login',
     component: () => import('../components/Login'),
+  },
+  {
+    path: '/result',
+    name: 'Result',
+    component: () => import('../components/Result/Result')
   }
-  
 ]
 
 const router = new VueRouter({
