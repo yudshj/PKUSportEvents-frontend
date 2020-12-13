@@ -50,10 +50,10 @@
                     if(resp.data.code == 0) { //登陆成功
                         var token = resp.data.data
                         if(this.checked == true){
-                            this.$store.commit("long_login",token)
+                            this.$store.commit("login",token,this.loginForm.username,0)
                         }
                         else{
-                            this.$store.commit("short_login",token)
+                            this.$store.commit("login",token,this.loginForm.username,1)
                         }
                         this.$router.replace('home')
                     }

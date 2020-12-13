@@ -33,7 +33,7 @@ export default {
         {name: '/index', navItem: '首页'},
         {name: '/result', navItem: '赛果'},
         {name: '/upload', navItem: '上传'},
-        {name: '/admin', navItem: '个人中心'}
+        {name: '/user', navItem: '个人中心'}
       ]
     }
   },
