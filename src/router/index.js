@@ -42,6 +42,16 @@ const routes = [
     component: () => import('../components/Register')
   },
   {
+    path: '/publish',
+    name: 'Publish',
+    component: () => import('../components/publish/publish')
+  },
+  {
+    path: '/result',
+    name: 'Result',
+    component: () => import('../components/Result/Result')
+  },
+  {
     path: '/user',
     name: 'User',
     redirect: '/user/info',

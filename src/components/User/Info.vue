@@ -30,13 +30,15 @@
 
 <style scoped>
     .main-container {
-        position: relative;
+        postion: absolute;
         margin-left: 250px;
-        margin-top: 10px;
+        margin-right:0;
+        width: 800px;
+        margin-top: 20px;
     }
     .part-container {
         border-radius: 15px;
-        width: 600px;
+        width: 800px;
         background: #fff;
         margin-bottom: 20px;
         border: 1px solid #eaeaea;

@@ -46,13 +46,15 @@
 
 <style scoped>
     .main-container {
-        position: relative;
+        postion: absolute;
         margin-left: 250px;
-        margin-top: 10px;
+        margin-right:0;
+        width: 800px;
+        margin-top: 20px;
     }
     .part-container {
         border-radius: 15px;
-        width: 600px;
+        width: 800px;
         background: #fff;
         margin-bottom: 20px;
         border: 1px solid #eaeaea;
@@ -74,8 +76,8 @@
     }
     .savebutton{
         margin-bottom:30px;
-        margin-left:240px;
-        width:120px;
+        margin-left:340px;
+        width:120px; /*(left+width/2)等于container的大小的一半，就可以居中*/
         background: #FF9966;
         border: none;
     }

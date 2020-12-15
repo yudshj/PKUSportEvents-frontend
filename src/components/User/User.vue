@@ -1,13 +1,11 @@
 <template>
-    <div el-container direction="vertical" class="demo-box">
+    <div el-container  class="demo-box">
         <div el-header>
             <page-head></page-head>
         </div>
-    <el-main>
         <side-index @indexSelect="changeDisplay" ref="sideIndex">
         </side-index>
         <router-view/>
-    </el-main>
     </div>
 </template>
 
