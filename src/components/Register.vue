@@ -16,10 +16,10 @@
                           auto-complete="off" placeholder="确认密码"></el-input>
             </el-form-item>
         <el-form-item style="width: 100%;margin-top: 40px">
-            <el-button type="primary" style="width: 40%;background: #FF9966;border: none" v-on:click="register">注册</el-button>
+            <el-button type="primary" style="width: 130px;background: #FF9966;border: none" v-on:click="register">注册</el-button>
         </el-form-item>
-        <el-dialog class="login_dialog" :title="dialogTitle" :visible.sync="dialogVisible" :center=true :append-to-body=true :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
-            <el-button class="confirm_button" type="primary" style="width: 30%;background: #FF9966;border: none;" v-on:click="closedialog">确认</el-button>
+        <el-dialog class="login_dialog" :title="dialogTitle" :visible.sync="dialogVisible" :center=true :append-to-body=true :lock-scroll=true width="200px" :show-close=false :close-on-click-modal=false>
+            <el-button class="confirm_button" type="primary" style="width:100px;background: #FF9966;border: none;" v-on:click="closedialog">确认</el-button>
         </el-dialog>
     </el-form>
     </body>
@@ -100,7 +100,7 @@
                         }
                         else{ // 用户名or密码不合要求(已拦截) 或未知错误
                             this.dialogTitle = "未知错误"
-                            this.dialogVisible = false
+                            this.dialogVisible = true
                         }
                     })
                 }
@@ -142,7 +142,7 @@
     }
     .confirm_button{
         position: absolute;
-        top: 50%;
-        left: 35%;
+        top: 52px;
+        left: 50px
     }
 </style>

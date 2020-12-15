@@ -11,14 +11,14 @@ export default new Vuex.Store({
     username: window.localStorage.getItem("username") == null ? "" : window.localStorage.getItem("username")
   },
   mutations: {
-    login (state,token,username,type) {
+    login (state,data) {
       state.logined = true
-      state.username = username
-      state.token = token
-      if(type == 1) {
+      state.username = data.username
+      state.token = data.token
+      if(data.type == 1) {
         window.localStorage.setItem("longlogined", "yes")
-        window.localStorage.setItem("token", token)
-        window.localStorage.setItem("username", username)
+        window.localStorage.setItem("token",data.token)
+        window.localStorage.setItem("username",data.username)
       }
     },
     logout (state) {

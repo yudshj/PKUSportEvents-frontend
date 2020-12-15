@@ -14,11 +14,11 @@
         <el-checkbox class="login_remember" v-model="checked"
                      label-position="left"><span style="color: #505458">下次自动登录</span></el-checkbox>
         <el-form-item>
-            <el-button type="primary" style="width: 30%;background: #FF9966;border: none;margin-right:5px" v-on:click="login">登录</el-button>
-            <router-link to="register"><el-button type="primary" style="width: 30%;background: #505458;border: none">注册</el-button></router-link>
+            <el-button type="primary" style="width: 100px;background: #FF9966;border: none;margin-right:5px" v-on:click="login">登录</el-button>
+            <router-link to="register"><el-button type="primary" style="width: 100px;background: #505458;border: none">注册</el-button></router-link>
         </el-form-item>
-        <el-dialog class="login_dialog" :title="dialogTitle" :visible.sync="dialogVisible" :center=true :append-to-body=true :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
-            <el-button class="confirm_button" type="primary" style="width: 30%;background: #FF9966;border: none;" v-on:click="closedialog">确认</el-button>
+        <el-dialog class="login_dialog" :title="dialogTitle" :visible.sync="dialogVisible" :center=true :append-to-body=true :lock-scroll=true width="200px" :show-close=false :close-on-click-modal=false>
+            <el-button class="confirm_button" type="primary" style="width:100px;background: #FF9966;border: none;" v-on:click="closedialog">确认</el-button>
         </el-dialog>
 
     </el-form>
@@ -50,10 +50,18 @@
                     if(resp.data.code == 0) { //登陆成功
                         var token = resp.data.data
                         if(this.checked == true){
-                            this.$store.commit("login",token,this.loginForm.username,0)
+                            this.$store.commit("login", {
+                                token:token,
+                                username:this.loginForm.username,
+                                type:1}
+                                )
                         }
                         else{
-                            this.$store.commit("login",token,this.loginForm.username,1)
+                            this.$store.commit("login", {
+                                token:token,
+                                username:this.loginForm.username,
+                                type:0}
+                            )
                         }
                         this.$router.replace('home')
                     }
@@ -71,12 +79,13 @@
 </script>
 <style>
     #paper {
-        /*background:url("../assets/logo.png") no-repeat;*/
+        /*background:url("../assets/logo.png") no-repeat;
         background-position: center;
         height: 100%;
         width: 100%;
         background-size: cover;
         position: fixed;
+        */
     }
     body{
         margin: 0;
@@ -102,8 +111,8 @@
     }
     .confirm_button{
         position: absolute;
-        top: 50%;
-        left: 35%;
+        top: 52px;
+        left: 50px
     }
 
 </style>

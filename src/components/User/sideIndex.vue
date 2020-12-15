@@ -39,7 +39,7 @@
 <style scoped>
     .categories {
         position: absolute;
-        width: 20%;
-        height: 80%;
+        width: 200px;
+        height: 800px;
     }
 </style>

@@ -1,16 +1,16 @@
 <template>
     <el-container class="main-container" direction="vertical">
         <el-container class="part-container" direction="vertical">
-            <h1 style="width:20%">基本信息</h1>
+            <h1 class="bigtext">基本信息</h1>
             <el-container direction="horizontal">
-                <p style="width:20%;color:gray">用户名: </p>
+                <p class="smalltext">用户名: </p>
                 <p v-text="username"></p>
             </el-container>
         </el-container>
         <el-container class="part-container" direction="vertical">
-            <h1 style="width:20%">其他信息</h1>
+            <h1 class="bigtext">其他信息</h1>
             <el-container direction="horizontal">
-                <p style="width:20%;color:gray"> </p>
+                <p class="smalltext"> </p>
                 <p v-text="username"></p>
             </el-container>
         </el-container>
@@ -31,15 +31,22 @@
 <style scoped>
     .main-container {
         position: relative;
-        margin-left: 25%;
-        margin-top: 1%
+        margin-left: 250px;
+        margin-top: 10px;
     }
     .part-container {
         border-radius: 15px;
-        width: 80%;
+        width: 600px;
         background: #fff;
-        margin-bottom: 5%;
+        margin-bottom: 20px;
         border: 1px solid #eaeaea;
         box-shadow: 0 0 25px #DCDCDC;
+    }
+    .bigtext{
+        width:120px
+    }
+    .smalltext{
+        margin-left:50px;
+        color:gray
     }
 </style>
