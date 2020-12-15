@@ -1,5 +1,6 @@
 <template>
 	<body id = "paper" style="overflow: scroll;">
+	<page-head></page-head>
 	<el-form :model = "ArticleInfo" class = "publish-container" 
 	:label-position = "left" label-width = "60px" v-loading = "loading">
 	
@@ -45,7 +46,7 @@
 		    v-model="ArticleInfo.article.articleContentMd"
 		    style="height: 100%;min-height:300px"
 		    ref=md
-		    @save="saveArticles"
+		    @change="Changehtml"
 		    fontSize="16px">
 		</mavon-editor>
 		</el-form-item>
@@ -76,8 +77,11 @@
 	</body>
 </template>
 <script>
+	import PageHead from '@/components/Tools/PageHead'
+	
 	export default {
-	  name:'Editor',
+	  name:'Publish',
+	  components: {PageHead},
 	  data() {
 	    return {
 			loading:false,
@@ -103,10 +107,11 @@
 			  if(this.ArticleInfo.title != '' && this.ArticleInfo.article.articleContentMd != ''){
 					for(var i = 0 ; i < this.AddTagList.length ; ++i)
 						this.ArticleInfo.tags.push(parseInt(this.AddTagList[i].tagid))
-						
-					this.$axios.post('/article/add',{
+					this.dialogSuccVisible = true
+					/*this.$axios.post('/article/add',{
 						title:this.ArticleInfo.title,
 						content:this.ArticleInfo.article.articleContentMd,
+						html:this.ArticleInfo.article.articleContentHtml,
 						tags:this.ArticleInfo.tags
 					})
 					.then(resp => {
@@ -115,7 +120,7 @@
 							this.FailMessage = resp.data.data
 							this.dialogFailVisible = true
 						}
-					})
+					})*/
 			    }
 			    else {
 					this.FailMessage = '用户名或内容不能为空'
@@ -123,6 +128,9 @@
 				}
 		  },
 		  
+		  Changehtml(value, render){
+			  this.ArticleInfo.articleContentHtml = render  
+		  },
 		  closedialogFail () {
 		      this.dialogFailVisible = false
 		  },
