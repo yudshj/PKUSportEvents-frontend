@@ -90,10 +90,7 @@
 			dialogSuccVisible:false,
 			selectVisible:false,
 			newtag:'',
-			TagList:[{name:"足球",tagid:'0'},{name:"篮球",tagid:'1'},{name:"排球",tagid:'2'},
-					{name:"羽毛球",tagid:'3'},{name:"乒乓球",tagid:'4'},{name:"信科",tagid:'5'},
-					{name:"医学",tagid:'6'},	{name:"物理",tagid:'7'},{name:"生科",tagid:'8'},
-					{name:"国关",tagid:'9'}],
+			TagList:[],
 			AddTagList:[],
 			ArticleInfo:{
 				tags:[],
@@ -106,9 +103,9 @@
 		  Publish(){
 			  if(this.ArticleInfo.title != '' && this.ArticleInfo.article.articleContentMd != ''){
 					for(var i = 0 ; i < this.AddTagList.length ; ++i)
-						this.ArticleInfo.tags.push(parseInt(this.AddTagList[i].tagid))
-					this.dialogSuccVisible = true
-					/*this.$axios.post('/article/add',{
+						this.ArticleInfo.tags.push(this.AddTagList[i].tagid)
+					//this.dialogSuccVisible = true
+					this.$axios.post('/article/add',{
 						title:this.ArticleInfo.title,
 						content:this.ArticleInfo.article.articleContentMd,
 						html:this.ArticleInfo.article.articleContentHtml,
@@ -120,7 +117,7 @@
 							this.FailMessage = resp.data.data
 							this.dialogFailVisible = true
 						}
-					})*/
+					})
 			    }
 			    else {
 					this.FailMessage = '用户名或内容不能为空'
@@ -139,16 +136,12 @@
 		      this.dialogSuccVisible = false
 		  },
 		  
-		  cmp(a,b){
-		  		return a.tagid < b.tagid	  
-		  },
-		  
 		  TagCloseHandler(tag){
 			  let va = tag
 			  this.AddTagList.splice(this.AddTagList.indexOf(tag),1)
 			  this.TagList.push(va)
 			  this.TagList.sort(function(a,b){
-				  	return parseInt(a.tagid) - parseInt(b.tagid)
+				  	return a.tagid - b.tagid
 			  })
 		  },
 		  
@@ -157,12 +150,12 @@
 		  },
 		  
 		  SelectHandle(){
-			  if(this.newtag){
+			  if(this.newtag >= 0){
 				for(var i = 0 ; i < this.TagList.length ; ++i)
 				if(this.newtag == this.TagList[i].tagid){
 					this.AddTagList.push(this.TagList[i])
 					this.AddTagList.sort(function(a,b){
-						return parseInt(a.tagid) - parseInt(b.tagid)
+						return a.tagid - b.tagid
 					})
 					this.TagList.splice(i,1)
 					break
@@ -171,6 +164,22 @@
 			  this.selectVisible = false
 			  this.newtag = ''
 		  }
+	  },
+	  mounted() {
+		  
+	  	this.$axios.post('/tag/getall',{}).then(resp=>{
+			for(var i = 0 ; i < resp.data.length ; ++i){
+				let va = {
+					name:resp.data[i].name,
+					tagid:resp.data[i].tagId
+					}
+				this.TagList.push(va)
+			}
+			
+			this.TagList.sort(function(a,b){
+							  	return a.tagid - b.tagid
+			})
+		})
 	  }
 	}
 </script>
