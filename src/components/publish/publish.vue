@@ -46,6 +46,7 @@
 		    v-model="ArticleInfo.article.articleContentMd"
 		    style="height: 100%;min-height:300px"
 		    ref=md
+			@save="Changehtml"
 		    @change="Changehtml"
 		    fontSize="16px">
 		</mavon-editor>
@@ -131,7 +132,7 @@
 		  },
 		  
 		  Changehtml(value, render){
-			  this.ArticleInfo.articleContentHtml = render  
+			  this.ArticleInfo.article.articleContentHtml = render  
 		  },
 		  closedialogFail () {
 		      this.dialogFailVisible = false
