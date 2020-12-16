@@ -66,7 +66,7 @@
 		</router-link>
 		</el-form-item>
 		
-		<el-dialog class="publishFail_dialog" title="FailMessage" :visible.sync="dialogFailVisible" :center=true :append-to-body=true :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
+		<el-dialog class="publishFail_dialog" :title="FailMessage" :visible.sync="dialogFailVisible" :center=true :append-to-body=true :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
 		    <el-button class="confirm_button" type="primary" style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogFail">确认</el-button>
 		</el-dialog>
 		
@@ -107,14 +107,19 @@
 					//this.dialogSuccVisible = true
 					this.$axios.post('/article/add',{
 						title:this.ArticleInfo.title,
-						content:this.ArticleInfo.article.articleContentMd,
-						html:this.ArticleInfo.article.articleContentHtml,
-						tags:this.ArticleInfo.tags
+						markdownContent:this.ArticleInfo.article.articleContentMd,
+						htmlContent:this.ArticleInfo.article.articleContentHtml,
+						tagIds:this.ArticleInfo.tags
+					},{
+						headers: {
+						          'token': this.$store.state.token
+						        }
 					})
 					.then(resp => {
+						console.log(resp)
 						if(resp.data.code==0) this.dialogSuccVisible = true
 						else{
-							this.FailMessage = resp.data.data
+							this.FailMessage = resp.data.msg
 							this.dialogFailVisible = true
 						}
 					})
@@ -165,14 +170,13 @@
 			  this.newtag = ''
 		  }
 	  },
-	  mounted() {
-		  
+	  mounted:function() {
 	  	this.$axios.post('/tag/getall',{}).then(resp=>{
-			for(var i = 0 ; i < resp.data.length ; ++i){
+			for(var i = 0 ; i < resp.data.data.length ; ++i){
 				let va = {
-					name:resp.data[i].name,
-					tagid:resp.data[i].tagId
-					}
+					name:resp.data.data[i].name,
+					tagid:resp.data.data[i].tagId
+				}
 				this.TagList.push(va)
 			}
 			
