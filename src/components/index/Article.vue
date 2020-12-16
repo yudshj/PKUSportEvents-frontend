@@ -4,7 +4,7 @@
       <img :src="article.cover" alt="">
     </div>
     <div class="info">
-      <a :href="'index/'+article.id" class="article-title">{{ article && article.title }}</a>
+      <a :href="'view/'+article.articleId" class="article-title">{{ article && article.title }}</a>
       <div class="article-time">{{ formatTime }}</div>
       <div class="article-content">{{ brief }}</div>
     </div>
@@ -23,16 +23,13 @@ export default {
     // 对时间进行格式化
     formatTime: function() {
       if (this.article) {
-        const dt = new Date(this.article.time)
-        const month = dt.getMonth()
-        const date = dt.getDate()
-        return `${month}月${date}日`
+        return this.article.releaseDate.substr(0, 10)
       }
       return '';
     },
     // 截取文章内容的前 35 个字，并加上省略号
     brief: function() {
-      return this.article.content.substr(0, 35) + '...';
+      return this.article.markdownContent.substr(0,35) + '...';
     }
   }
 }

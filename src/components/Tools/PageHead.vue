@@ -3,7 +3,7 @@
       :default-active="currentPath"
       router
       mode="horizontal"
-      background-color="white"
+      background-color="#289C8E"
       text-color="#222"
       active-text-color="red"
       style="min-width: 1300px">
@@ -27,6 +27,7 @@
 <script>
 export default {
   name: 'PageHead',
+
   data () {
     return {
       navList: [

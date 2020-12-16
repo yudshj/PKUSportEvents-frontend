@@ -8,7 +8,7 @@ export default new Vuex.Store({
     // 使用localStorage，标签页关闭后仍然能保存；使用sessionStorage，标签页关闭后信息就清空
     logined : (window.localStorage.getItem("longlogined") == "yes"),   // 初始值看localStorage
     token: window.localStorage.getItem("token") == null ? "" : window.localStorage.getItem("token"),
-    username: window.localStorage.getItem("username") == null ? "" : window.localStorage.getItem("username")
+    username: window.localStorage.getItem("username") == null ? "" : window.localStorage.getItem("username"),
   },
   mutations: {
     login (state,data) {
@@ -25,7 +25,8 @@ export default new Vuex.Store({
       state.logined = false
       state.token = ""
       window.localStorage.removeItem("longlogined")
-    }
+    },
+
   },
   actions: {
   },
