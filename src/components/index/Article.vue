@@ -4,7 +4,7 @@
       <img :src="article.cover" alt="">
     </div>
     <div class="info">
-      <a :href="'view/'" class="article-title">{{ article && article.title }}</a>
+      <a :href="setID()" class="article-title">{{ article && article.title }}</a>
       <div class="article-time">{{ formatTime }}</div>
       <div class="article-content">{{ brief }}</div>
     </div>
@@ -31,8 +31,19 @@ export default {
     brief: function() {
       return this.article.markdownContent.substr(0,35) + '...';
     }
+  },
+  methods: {
+    setID: function () {
+      var ID = this.article.articleId
+      this.$store.commit('setID',
+          {
+            ID: ID
+          })
+      return '/view'
+    }
   }
 }
+
 </script>
 
 <style lang="scss" scoped>

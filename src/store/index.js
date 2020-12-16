@@ -27,6 +27,10 @@ export default new Vuex.Store({
       state.token = ""
       window.localStorage.removeItem("longlogined")
     },
+    setID(state, data)
+    {
+      state.articleId = data.ID
+    }
 
   },
   actions: {
