@@ -68,7 +68,15 @@ const routes = [
         component: () => import('../components/User/Like')
       }
     ]
-  }
+  },
+    {
+      path: '/view',
+      name: 'ArticlePage',
+      component: () => import('../components/ArticleDetail/ArticlePage'),
+      meta:{
+        requireLogin : true
+      }
+    }
 ]
 
 const router = new VueRouter({
