@@ -38,7 +38,7 @@ export default {
     return {
       tableData: [{
         id: 1,
-        date: '2016-05-02',
+        date: '2016-05-01',
         team1: "信科",
         team2: "医学",
         score: "1:3"
@@ -50,17 +50,36 @@ export default {
         score: "1:3"
       }, {
         id: 3,
-        date: '2016-05-02',
+        date: '2016-05-03',
         team1: "信科",
         team2: "医学",
         score: "1:3"
       }, {
         id: 4,
-        date: '2016-05-02',
+        date: '2016-05-04',
         team1: "信科",
         team2: "医学",
         score: "1:3"
-      }]
+      }, {
+        id: 5,
+        date: '2016-05-05',
+        team1: "信科",
+        team2: "医学",
+        score: "3:1"
+      }, {
+        id: 6,
+        date: '2016-05-06',
+        team1: "信科",
+        team2: "医学",
+        score: "3:1"
+      }, {
+        id: 7,
+        date: '2016-05-07',
+        team1: "信科",
+        team2: "医学",
+        score: "3:1"
+      }
+      ]
     }
   }
 }

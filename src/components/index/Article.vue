@@ -1,10 +1,10 @@
 <template>
   <div class="article">
     <div class="article-cover">
-      <img :src="article.cover" alt="">
+      <img :src="require('@/assets/images/grass.jpg')" alt="">
     </div>
     <div class="info">
-      <a :href="setID()" class="article-title">{{ article && article.title }}</a>
+      <router-link class = "article-title":to="{ path: '/view', query: { id: this.article.articleId }}">{{ ArticleTitle }}</router-link>
       <div class="article-time">{{ formatTime }}</div>
       <div class="article-content">{{ brief }}</div>
     </div>
@@ -23,23 +23,16 @@ export default {
     // 对时间进行格式化
     formatTime: function() {
       if (this.article) {
-        return this.article.releaseDate.substr(0, 10)
+        return this.article.releaseDate.toString().substr(0,10)
       }
       return '';
     },
     // 截取文章内容的前 35 个字，并加上省略号
     brief: function() {
       return this.article.markdownContent.substr(0,35) + '...';
-    }
-  },
-  methods: {
-    setID: function () {
-      var ID = this.article.articleId
-      this.$store.commit('setID',
-          {
-            ID: ID
-          })
-      return '/view'
+    },
+    ArticleTitle: function () {
+      return this.article.title
     }
   }
 }

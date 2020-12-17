@@ -17,7 +17,7 @@ export default {
   components: {PageHead, ShowArticle},
   beforeCreate(){
     // 添加背景色
-    document.querySelector('body').setAttribute('style', 'background-color:#B2F0E8')
+    document.querySelector('body').setAttribute('style', 'background-color:#FFFFFF')
   },
   beforeDestroy(){
     document.querySelector('body').setAttribute('style', '')

@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import './plugins/mavonEditor.js'
-
+import './plugins/mavonEditor.js'
 Vue.config.productionTip = false
 
 var axios = require('axios')
@@ -34,4 +34,6 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
 

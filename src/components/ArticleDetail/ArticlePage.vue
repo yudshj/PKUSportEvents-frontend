@@ -69,7 +69,7 @@ import Article from '@/components/ArticleDetail/OtherArticles.vue'
 		
       load () {
         var _this = this
-		this.$axios.post('/article/get/' + this.$store.state.articleId,{},{
+		this.$axios.post('/article/get/' + this.$route.query.id,{},{
 		  headers: {
 		    'token': this.$store.state.token
 		  }

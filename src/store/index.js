@@ -9,7 +9,7 @@ export default new Vuex.Store({
     logined : (window.localStorage.getItem("longlogined") == "yes"),   // 初始值看localStorage
     token: window.localStorage.getItem("token") == null ? "" : window.localStorage.getItem("token"),
     username: window.localStorage.getItem("username") == null ? "" : window.localStorage.getItem("username"),
-	articleId: 3,
+	articleId: window.localStorage.getItem("ID") == null ? 5 : window.localStorage.getItem("ID"),
   },
   mutations: {
     login (state,data) {
@@ -29,9 +29,8 @@ export default new Vuex.Store({
     },
     setID(state, data)
     {
-      state.articleId = data.ID
+      window.localStorage.setItem("ID", data.ID)
     }
-
   },
   actions: {
   },
