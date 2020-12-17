@@ -16,7 +16,8 @@ Vue.prototype.$axios = axios
 
 router.beforeEach((to, from, next) => {
         if (to.meta.requireLogin) {
-            if (store.state.logined) {
+            console.log(store.state.logined)
+            if (store.state.logined == true) {
                 next()
             } else {
                 next('/login')
