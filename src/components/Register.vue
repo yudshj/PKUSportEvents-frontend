@@ -84,9 +84,10 @@
                 this.name_exist = false
                 this.$refs["regform"].validate( )
                 if(this.checked == true) {
+                    var hid = this.$md5(this.loginForm.password)
                     this.$axios.post('/register',{
                         username: this.loginForm.username,
-                        password: this.loginForm.password
+                        password: hid
                     })
                     .then(resp =>{
                         console.log(resp.data)

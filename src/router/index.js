@@ -34,7 +34,10 @@ const routes = [
   {
     path: '/result',
     name: 'Result',
-    component: () => import('../components/Result/Result')
+    component: () => import('../components/Result/Result'),
+    meta:{
+      requireLogin : true
+    }
   },
   {
     path: '/register',
@@ -44,12 +47,18 @@ const routes = [
   {
     path: '/publish',
     name: 'Publish',
-    component: () => import('../components/publish/publish')
+    component: () => import('../components/publish/publish'),
+    meta:{
+      requireLogin : true
+    }
   },
   {
     path: '/result',
     name: 'Result',
-    component: () => import('../components/Result/Result')
+    component: () => import('../components/Result/Result'),
+    meta:{
+      requireLogin : true
+    }
   },
   {
     path: '/user',
@@ -60,12 +69,18 @@ const routes = [
       {
         path: '/user/info',
         name: 'Info',
-        component: () => import('../components/User/Info')
+        component: () => import('../components/User/Info'),
+        meta:{
+          requireLogin : true
+        }
       },
       {
         path: '/user/like',
         name: 'Like',
-        component: () => import('../components/User/Like')
+        component: () => import('../components/User/Like'),
+        meta:{
+          requireLogin : true
+        }
       }
     ]
   },

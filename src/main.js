@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import './plugins/mavonEditor.js'
+import md5 from 'js-md5'
 
 Vue.config.productionTip = false
 
@@ -13,6 +14,8 @@ axios.defaults.baseURL = 'http://10.128.188.208:8181/api'
 axios.defaults.withCredentials = true
 // 全局注册，在别的地方可以使用$axios来代表axios
 Vue.prototype.$axios = axios
+// MD5
+Vue.prototype.$md5 = md5
 
 router.beforeEach((to, from, next) => {
         if (to.meta.requireLogin) {

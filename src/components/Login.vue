@@ -42,9 +42,10 @@
         },
         methods: {
             login () {
+                var hid = this.$md5(this.loginForm.password)
                 this.$axios.post('/login',{
                     username: this.loginForm.username,
-                    password: this.loginForm.password
+                    password: hid
                 })
                 .then(resp => {
                     if(resp.data.code == 0) { //登陆成功
