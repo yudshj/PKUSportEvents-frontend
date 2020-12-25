@@ -10,7 +10,7 @@
         </el-menu-item>
         <el-menu-item index="1">
             <i class="el-icon-star-on"></i>
-            <span slot="title">偏好设置</span>
+            <span slot="title">权限申请</span>
         </el-menu-item>
     </el-menu>
 </template>
@@ -29,7 +29,7 @@
                     this.$router.replace('/user/info')
                 }
                 else if(key == "1"){
-                    this.$router.replace('/user/like')
+                    this.$router.replace('/user/access')
                 }
             }
         }

@@ -10,6 +10,7 @@ export default new Vuex.Store({
     token: window.localStorage.getItem("token") == null ? "" : window.localStorage.getItem("token"),
     username: window.localStorage.getItem("username") == null ? "" : window.localStorage.getItem("username"),
 	articleId: window.localStorage.getItem("ID") == null ? 5 : window.localStorage.getItem("ID"),
+    level: 0
   },
   mutations: {
     login (state,data) {

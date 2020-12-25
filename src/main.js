@@ -17,6 +17,7 @@ Vue.prototype.$axios = axios
 // MD5
 Vue.prototype.$md5 = md5
 
+/*
 router.beforeEach((to, from, next) => {
         if (to.meta.requireLogin) {
             if (store.state.logined) {
@@ -29,7 +30,7 @@ router.beforeEach((to, from, next) => {
         }
     }
 )
-
+*/
 
 
 new Vue({

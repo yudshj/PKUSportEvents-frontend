@@ -75,13 +75,13 @@ const routes = [
         }
       },
       {
-        path: '/user/like',
-        name: 'Like',
-        component: () => import('../components/User/Like'),
+        path: '/user/access',
+        name: 'Access',
+        component: () => import('../components/User/Access'),
         meta:{
           requireLogin : true
         }
-      }
+      },
     ]
   },
     {
