@@ -9,7 +9,7 @@ import md5 from 'js-md5'
 Vue.config.productionTip = false
 
 var axios = require('axios')
-axios.defaults.baseURL = 'http://10.128.188.208:8181/api'
+axios.defaults.baseURL = 'http://47.92.233.174:80/api'
 // 附带凭证
 axios.defaults.withCredentials = true
 // 全局注册，在别的地方可以使用$axios来代表axios
@@ -17,7 +17,7 @@ Vue.prototype.$axios = axios
 // MD5
 Vue.prototype.$md5 = md5
 
-/*
+
 router.beforeEach((to, from, next) => {
         if (to.meta.requireLogin) {
             if (store.state.logined) {
@@ -30,7 +30,7 @@ router.beforeEach((to, from, next) => {
         }
     }
 )
-*/
+
 
 
 new Vue({

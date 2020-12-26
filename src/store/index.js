@@ -10,17 +10,19 @@ export default new Vuex.Store({
     token: window.localStorage.getItem("token") == null ? "" : window.localStorage.getItem("token"),
     username: window.localStorage.getItem("username") == null ? "" : window.localStorage.getItem("username"),
 	articleId: window.localStorage.getItem("ID") == null ? 5 : window.localStorage.getItem("ID"),
-    level: 0
+    userid: window.localStorage.getItem("userid") == null ? -1 : window.localStorage.getItem("userid")
   },
   mutations: {
     login (state,data) {
       state.logined = true
       state.username = data.username
       state.token = data.token
+      state.userid = data.userid
       if(data.type == 1) {
         window.localStorage.setItem("longlogined", "yes")
         window.localStorage.setItem("token",data.token)
         window.localStorage.setItem("username",data.username)
+        window.localStorage.setItem("userid",data.userid)
       }
     },
     logout (state) {

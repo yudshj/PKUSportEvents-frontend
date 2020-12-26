@@ -1,14 +1,14 @@
 <template>
     <el-menu
+            :default-active="currentPath"
             class="categories"
-            default-active="0"
-            @select="handleSelect"
+            router
             active-text-color="red">
-        <el-menu-item index="0">
+        <el-menu-item :key="key0" :index="index0">
             <i class="el-icon-user-solid"></i>
             <span slot="title">个人信息</span>
         </el-menu-item>
-        <el-menu-item index="1">
+        <el-menu-item :key="key1" :index="index1">
             <i class="el-icon-star-on"></i>
             <span slot="title">权限申请</span>
         </el-menu-item>
@@ -19,18 +19,17 @@
     export default {
         name: 'sideIndex',
         data () {
-            return {
-                type: ''
+            return{
+                key0: "0",
+                key1: "1",
+                index0: "/user/info",
+                index1: "/user/access"
             }
+
         },
-        methods: {
-            handleSelect (key) {
-                if(key == "0"){
-                    this.$router.replace('/user/info')
-                }
-                else if(key == "1"){
-                    this.$router.replace('/user/access')
-                }
+        computed: {
+            currentPath () {
+                return this.$route.path
             }
         }
     }

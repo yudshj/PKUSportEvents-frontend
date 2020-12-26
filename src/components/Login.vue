@@ -49,19 +49,24 @@
                 })
                 .then(resp => {
                     if(resp.data.code == 0) { //登陆成功
-                        var token = resp.data.data
+                        var token = resp.data.data.token
+                        var uid = resp.data.data.userId
+                        console.log(token)
+                        console.log(uid)
                         if(this.checked == true){
                             this.$store.commit("login", {
                                 token:token,
                                 username:this.loginForm.username,
-                                type:1}
+                                type:1,
+                                userid:uid}
                                 )
                         }
                         else{
                             this.$store.commit("login", {
                                 token:token,
                                 username:this.loginForm.username,
-                                type:0}
+                                type:0,
+                                userid:uid}
                             )
                         }
                         this.$router.replace('home')
