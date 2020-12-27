@@ -76,10 +76,8 @@
 	  		}
 	  }*/
 	},
-    methods: {
-		
+    methods: {	
 		load () {
-			this.returnIndex()
 		  var _this = this
 				this.$axios.post('/perm/getall',{},{
 				  headers: {
@@ -109,9 +107,27 @@
 		this.$router.replace('/index')
 	  },
       confirm(index, rows) {
-        rows.splice(index, 1);
+		this.$axios.post('/perm/check', {
+			allow: 1,
+			applyId: rows[index].applyId
+		}, {
+		  headers: {
+		    'token': this.$store.state.token
+		  }
+		})
+		
+		rows.splice(index, 1);
       },
 	  deny(index, rows) {
+		this.$axios.post('/perm/check', {
+			allow: 0,
+			applyId: rows[index].applyId
+		}, {
+		  headers: {
+		    'token': this.$store.state.token
+		  }
+		})
+		
 	    rows.splice(index, 1);
 	  },
     },
@@ -119,29 +135,6 @@
     data() {
       return {
         tableData: [
-			{
-			            "applyId": 10,
-			            "userId": 5,
-			            "permission": 10,
-			            "applyDate": "2020-12-26 17:37:54"
-			        },
-					{
-					            "applyId": 1,
-					            "userId": 4,
-					            "permission": 1,
-					            "applyDate": "2020-12-26 17:37:54"
-					        },
-							{
-							            "applyId": 4,
-							            "userId": 5,
-							            "permission": 4,
-							            "applyDate": "2020-12-26 17:37:54"
-							        },{
-            "applyId": 0,
-            "userId": 5,
-            "permission": 0,
-            "applyDate": "2020-12-26 17:37:54"
-        }
         ]
       }
     }

@@ -1,8 +1,8 @@
 <template>
 	<body id = "paper" style="overflow: scroll;">
 	<page-head></page-head>
-	<el-form :model = "ArticleInfo" class = "publish-container" 
-	:label-position = "left" label-width = "60px" v-loading = "loading">
+	<el-form class="publisher-container" :model = "ArticleInfo" :label-position = "left" 
+		label-width = "60px" v-loading = "loading">
 	
 		<el-form-item>
 			<h3 class = "Publish_title">发布您的战报</h3>
@@ -44,7 +44,7 @@
 		<el-form-item label = "正文:">
 		<mavon-editor
 		    v-model="ArticleInfo.article.articleContentMd"
-		    style="height: 100%;min-height:300px"
+		    style="height: 100%;min-height:400px"
 		    ref=md
 			@save="Changehtml"
 		    @change="Changehtml"
@@ -66,15 +66,36 @@
 				</el-button>
 		</router-link>
 		</el-form-item>
-		
-		<el-dialog class="publishFail_dialog" :title="FailMessage" :visible.sync="dialogFailVisible" :center=true :append-to-body=true :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
-		    <el-button class="confirm_button" type="primary" style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogFail">确认</el-button>
-		</el-dialog>
-		
-		<el-dialog class="publishSucc_dialog" title="发布成功" :visible.sync="dialogSuccVisible" :center=true :append-to-body=true :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
-		    <el-button class="confirm_button" type="primary" style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogSucc">确认</el-button>
-		</el-dialog>
 	</el-form>
+	<el-dialog :title="FailMessage" :visible.sync="dialogFailVisible" :center=true :append-to-body=true 
+		:lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
+		
+		<el-button class="confirm_button" type="primary" 
+			style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogFail">
+			确认
+		</el-button>
+	</el-dialog>
+	
+	<el-dialog  title="发布成功" :visible.sync="dialogSuccVisible" :center=true :append-to-body=true 
+		:lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
+		
+		<el-button class="confirm_button" type="primary" 
+			style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogSucc">
+			确认
+		</el-button>
+	</el-dialog>
+	
+	<el-dialog  title="您的权限不足" :visible.sync="dialogNoPerm" :center=true :append-to-body=true
+		:lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
+		
+		<router-link to="Home">
+			<el-button class="confirm_button" type="primary" 
+				style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogSucc">
+				返回
+			</el-button>
+		</router-link>
+	</el-dialog>
+	
 	</body>
 </template>
 <script>
@@ -89,6 +110,7 @@
 			FailMessage:'',
 			dialogFailVisible:false,
 			dialogSuccVisible:false,
+			dialogNoPerm:false,
 			selectVisible:false,
 			newtag:'',
 			TagList:[],
@@ -172,7 +194,23 @@
 		  }
 	  },
 	  mounted:function() {
-	  	this.$axios.post('/tag/getall',{}).then(resp=>{
+		this.$axios.post('/userinfo',{
+		    userid : this.$store.state.userid
+		},{
+		    headers: {
+		        'token': this.$store.state.token
+		    }
+		}).then(resp => {
+				var lv = resp.data.data.permission
+				if(lv > 4) this.dialogNoPerm = true
+			}
+		)
+		  
+	  	this.$axios.post('/tag/getall',{},{
+                    headers: {
+                        'token': this.$store.state.token
+                    }
+                }).then(resp=>{
 			for(var i = 0 ; i < resp.data.data.length ; ++i){
 				let va = {
 					name:resp.data.data[i].name,
@@ -210,11 +248,16 @@
 		margin-left: 10px;
 		text-align: left;
 	}
-	 .button-new-tag {
+	.button-new-tag{
 	    margin-left: 10px;
 	    height: 32px;
 	    line-height: 30px;
 	    padding-top: 0;
 	    padding-bottom: 0;
-	  }
+	}
+	.publisher-container{
+		position: absolute;
+		margin-left: 360px;
+		width: 1200px;
+    }
 </style>
