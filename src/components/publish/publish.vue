@@ -18,6 +18,15 @@
 		</el-input>
 		</el-form-item>
 		
+		<el-form-item prop = "Abstract" label="摘要:">
+		<el-input
+			type="textarea"
+			:autosize="{ minRows: 1, maxRows: 2}"
+			placeholder="请输入摘要"
+			v-model="ArticleInfo.abstract">
+		</el-input>
+		</el-form-item>
+		
 		<el-form-item label = "标签:" style="text-align: left;">
 		<el-tag
 		  v-for="tag in AddTagList"
@@ -118,13 +127,15 @@
 			ArticleInfo:{
 				tags:[],
 				title: '',
+				abstract:'',
 				article:{}
 			},
 	    }
 	  },
 	  methods:{
 		  Publish(){
-			  if(this.ArticleInfo.title != '' && this.ArticleInfo.article.articleContentMd != ''){
+			  if(this.ArticleInfo.title != '' && this.ArticleInfo.abstract != '' 
+				&& this.ArticleInfo.article.articleContentMd != '' ){
 					for(var i = 0 ; i < this.AddTagList.length ; ++i)
 						this.ArticleInfo.tags.push(this.AddTagList[i].tagid)
 					//this.dialogSuccVisible = true
@@ -132,7 +143,8 @@
 						title:this.ArticleInfo.title,
 						markdownContent:this.ArticleInfo.article.articleContentMd,
 						htmlContent:this.ArticleInfo.article.articleContentHtml,
-						tagIds:this.ArticleInfo.tags
+						tagIds:this.ArticleInfo.tags,
+						abstractContent:this.ArticleInfo.abstract,
 					},{
 						headers: {
 						          'token': this.$store.state.token
@@ -148,7 +160,7 @@
 					})
 			    }
 			    else {
-					this.FailMessage = '用户名或内容不能为空'
+					this.FailMessage = '标题,摘要，内容均不能为空'
 					this.dialogFailVisible = true
 				}
 		  },
