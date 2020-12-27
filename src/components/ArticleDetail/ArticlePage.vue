@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import PageHead from '@/components/Tools/PageHead'///
+import PageHead from '@/components/Tools/PageHead'
 import Article from '@/components/ArticleDetail/OtherArticles.vue'
   export default {
     name: 'ArticleDetails',

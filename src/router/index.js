@@ -91,7 +91,15 @@ const routes = [
       meta:{
         requireLogin : true
       }
-    }
+    },
+	{
+	  path: '/permVerify',
+	  name: 'PermVerify',
+	  component: () => import('../components/PermissionVerify/PermVerify'),
+	  meta:{
+	    requireLogin : true
+	  }
+	}
 ]
 
 const router = new VueRouter({

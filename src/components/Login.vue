@@ -45,7 +45,7 @@
                 var hid = this.$md5(this.loginForm.password)
                 this.$axios.post('/login',{
                     username: this.loginForm.username,
-                    password: hid
+                    password: this.loginForm.password
                 })
                 .then(resp => {
                     if(resp.data.code == 0) { //登陆成功
