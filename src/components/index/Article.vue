@@ -29,7 +29,7 @@ export default {
     },
     // 截取文章内容的前 35 个字，并加上省略号
     brief: function() {
-      return this.article.markdownContent.substr(0,35) + '...';
+      return this.article.markdownContent.substr(0,10) + '...';
     },
     ArticleTitle: function () {
       return this.article.title
@@ -48,14 +48,17 @@ export default {
   &:last-child {
     border: none;
   }
+  .info {
+    flex: 3;
+  }
   .article-title {
     font-size: 20px;
     font-weight: 500;
     color: #000000;
-    text-align: justify;
+    text-align: center;
   }
   .article-cover {
-    flex: none;
+    flex: 1;
     width: 120px;
     margin-right: 10px;
     > img {
