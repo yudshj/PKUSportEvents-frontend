@@ -29,7 +29,7 @@ export default {
     },
     // 截取文章内容的前 35 个字，并加上省略号
     brief: function() {
-      return this.article.markdownContent.substr(0,10) + '...';
+      return this.article.abstractContent
     },
     ArticleTitle: function () {
       return this.article.title

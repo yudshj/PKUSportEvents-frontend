@@ -44,11 +44,10 @@
             </template>
           </el-table-column>
     </el-table-column>
-	</el-table-column>
   </el-table>
 </el-card>
 <div style="position: absolute;left: 880px;top: 800px;">
-	<el-button type="primary" round v-on:click="returnIndex">返回主界面</el-button>
+	<el-button type="primary" round v-on:click="returnIndex" style="background:#505458;">返回主界面</el-button>
 	</div>
   </div>
 </template>

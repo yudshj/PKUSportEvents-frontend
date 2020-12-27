@@ -42,8 +42,8 @@
         },
         methods: {
             login () {
-                var hid = this.$md5(this.loginForm.password)
-                //var hid = this.loginForm.password
+                //var hid = this.$md5(this.loginForm.password)
+                var hid = this.loginForm.password
                 this.$axios.post('/login',{
                     username: this.loginForm.username,
                     password: hid
