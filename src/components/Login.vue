@@ -42,7 +42,8 @@
         },
         methods: {
             login () {
-                var hid = this.$md5(this.loginForm.password)
+                //var hid = this.$md5(this.loginForm.password)
+                var hid = this.loginForm.password
                 this.$axios.post('/login',{
                     username: this.loginForm.username,
                     password: hid
@@ -50,7 +51,7 @@
                 .then(resp => {
                     if(resp.data.code == 0) { //登陆成功
                         var token = resp.data.data.token
-                        var uid = resp.data.data.userId
+                        var uid = resp.data.data.uid
                         console.log(token)
                         console.log(uid)
                         if(this.checked == true){

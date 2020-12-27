@@ -29,8 +29,8 @@ export default {
 #show {
   width: 100%;
   height: 100%;
-  position: fixed;
-  left: 800px;
+  position: absolute;
+  left: 820px;
 }
 
 
