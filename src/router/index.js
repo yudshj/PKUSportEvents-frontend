@@ -99,7 +99,7 @@ const routes = [
 	  meta:{
 	    requireLogin : true
 	  }
-	}
+	},
 ]
 
 const router = new VueRouter({

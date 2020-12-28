@@ -1,111 +1,114 @@
 <template>
-	<body id = "paper" style="overflow: scroll;">
-	<page-head></page-head>
-	<el-form class="publisher-container" :model = "ArticleInfo" :label-position = "left" 
-		label-width = "60px" v-loading = "loading">
-	
-		<el-form-item>
-			<h3 class = "Publish_title">发布您的战报</h3>
-		</el-form-item>
-		
-		<el-form-item prop = "Title" label="标题:">
-		<el-input
-			type="titlearea"
-			autosize
-			auto-complete="off"
-			placeholder="请输入标题"
-			v-model="ArticleInfo.title">
-		</el-input>
-		</el-form-item>
-		
-		<el-form-item prop = "Abstract" label="摘要:">
-		<el-input
-			type="textarea"
-			:autosize="{ minRows: 1, maxRows: 2}"
-			placeholder="请输入摘要"
-			v-model="ArticleInfo.abstract">
-		</el-input>
-		</el-form-item>
-		
-		<el-form-item label = "标签:" style="text-align: left;">
-		<el-tag
-		  v-for="tag in AddTagList"
-		  :key="tag.name"
-		  closable
-		  @close="TagCloseHandler(tag)">
-		  {{tag.name}}
-		</el-tag>
-		
-		<el-select v-if="selectVisible" v-model="newtag" placeholder="请选择" 
-			style="height: 32px; line-height: 30px;margin-left: 10px;"
-			@change="SelectHandle">
-			<el-option
-				v-for = "tag in TagList"
-				:key = "tag.tagid"
-				:label = "tag.name"
-				:value = "tag.tagid"
-			>
-			</el-option>
-		</el-select>
-		<el-button v-else class="button-new-tag" size="small" @click = "ShowSelector">+Add Tag</el-button>
-		</el-form-item>
-		
-		<el-form-item label = "正文:">
-		<mavon-editor
-		    v-model="ArticleInfo.article.articleContentMd"
-		    style="height: 100%;min-height:400px"
-		    ref=md
-			@save="Changehtml"
-		    @change="Changehtml"
-		    fontSize="16px">
-		</mavon-editor>
-		</el-form-item>
-		
-		<el-form-item>
-	    <el-button 
-			type="primary" 
-			style="width: 30%;background: #FF9966;border: none;margin-right:5px" 
-			v-on:click="Publish">
-			发布
-		</el-button>
-		 
-	    <router-link to="Home">
-				<el-button type="primary" style="width: 30%;background: #505458;border: none">
-					退回上一级
-				</el-button>
-		</router-link>
-		</el-form-item>
-	</el-form>
-	<el-dialog :title="FailMessage" :visible.sync="dialogFailVisible" :center=true :append-to-body=true 
-		:lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
-		
-		<el-button class="confirm_button" type="primary" 
-			style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogFail">
-			确认
-		</el-button>
-	</el-dialog>
-	
-	<el-dialog  title="发布成功" :visible.sync="dialogSuccVisible" :center=true :append-to-body=true 
-		:lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
-		
-		<el-button class="confirm_button" type="primary" 
-			style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogSucc">
-			确认
-		</el-button>
-	</el-dialog>
-	
-	<el-dialog  title="您的权限不足" :visible.sync="dialogNoPerm" :center=true :append-to-body=true
-		:lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
-		
-		<router-link to="Home">
-			<el-button class="confirm_button" type="primary" 
-				style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogSucc">
-				返回
-			</el-button>
-		</router-link>
-	</el-dialog>
-	
-	</body>
+  <div>
+    <page-head></page-head>
+    <body id = "paper" style="overflow: scroll;">
+    <el-form class="publisher-container" :model = "ArticleInfo" :label-position = "left"
+             label-width = "60px" v-loading = "loading">
+
+      <el-form-item>
+        <h3 class = "Publish_title">发布您的战报</h3>
+      </el-form-item>
+
+      <el-form-item prop = "Title" label="标题:">
+        <el-input
+            type="titlearea"
+            autosize
+            auto-complete="off"
+            placeholder="请输入标题"
+            v-model="ArticleInfo.title">
+        </el-input>
+      </el-form-item>
+
+      <el-form-item prop = "Abstract" label="摘要:">
+        <el-input
+            type="textarea"
+            :autosize="{ minRows: 1, maxRows: 2}"
+            placeholder="请输入摘要"
+            v-model="ArticleInfo.abstract">
+        </el-input>
+      </el-form-item>
+
+      <el-form-item label = "标签:" style="text-align: left;">
+        <el-tag
+            v-for="tag in AddTagList"
+            :key="tag.name"
+            closable
+            @close="TagCloseHandler(tag)">
+          {{tag.name}}
+        </el-tag>
+
+        <el-select v-if="selectVisible" v-model="newtag" placeholder="请选择"
+                   style="height: 32px; line-height: 30px;margin-left: 10px;"
+                   @change="SelectHandle">
+          <el-option
+              v-for = "tag in TagList"
+              :key = "tag.tagid"
+              :label = "tag.name"
+              :value = "tag.tagid"
+          >
+          </el-option>
+        </el-select>
+        <el-button v-else class="button-new-tag" size="small" @click = "ShowSelector">+Add Tag</el-button>
+      </el-form-item>
+
+      <el-form-item label = "正文:">
+        <mavon-editor
+            v-model="ArticleInfo.article.articleContentMd"
+            style="height: 100%;min-height:400px"
+            ref=md
+            @save="Changehtml"
+            @change="Changehtml"
+            fontSize="16px">
+        </mavon-editor>
+      </el-form-item>
+
+      <el-form-item>
+        <el-button
+            type="primary"
+            style="width: 30%;background: #FF9966;border: none;margin-right:5px"
+            v-on:click="Publish">
+          发布
+        </el-button>
+
+        <router-link to="Home">
+          <el-button type="primary" style="width: 30%;background: #505458;border: none">
+            退回上一级
+          </el-button>
+        </router-link>
+      </el-form-item>
+    </el-form>
+    <el-dialog :title="FailMessage" :visible.sync="dialogFailVisible" :center=true :append-to-body=true
+               :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
+
+      <el-button class="confirm_button" type="primary"
+                 style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogFail">
+        确认
+      </el-button>
+    </el-dialog>
+
+    <el-dialog  title="发布成功" :visible.sync="dialogSuccVisible" :center=true :append-to-body=true
+                :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
+
+      <el-button class="confirm_button" type="primary"
+                 style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogSucc">
+        确认
+      </el-button>
+    </el-dialog>
+
+    <el-dialog  title="您的权限不足" :visible.sync="dialogNoPerm" :center=true :append-to-body=true
+                :lock-scroll=true width="30%" :show-close=false :close-on-click-modal=false>
+
+      <router-link to="Home">
+        <el-button class="confirm_button" type="primary"
+                   style="width: 30%;background: #FF9966;border: none" v-on:click="closedialogSucc">
+          返回
+        </el-button>
+      </router-link>
+    </el-dialog>
+
+    </body>
+  </div>
+
 </template>
 <script>
 	import PageHead from '@/components/Tools/PageHead'

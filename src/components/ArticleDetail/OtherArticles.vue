@@ -4,7 +4,7 @@
       <img :src="require('@/assets/images/grass.jpg')" alt="">
     </div>
     <div class="info">
-      <router-link class = "article-title":to="{ path: '/view', query: { id: this.article.articleId }}">{{ ArticleTitle }}</router-link>
+      <router-link class = "article-title":to="{ path: '/view', query: { id: this.article.articleId }}" @click.native="flushCom">{{ ArticleTitle }}</router-link>
       <div class="article-time">{{ formatTime }}</div>
       <div class="article-content">{{ brief }}</div>
     </div>
@@ -34,7 +34,13 @@ export default {
     ArticleTitle: function () {
       return this.article.title
     }
+  },
+  methods: {
+    flushCom(){
+      this.$router.go(0)
+    }
   }
+
 }
 
 </script>
